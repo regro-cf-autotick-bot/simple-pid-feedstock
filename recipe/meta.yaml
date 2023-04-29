@@ -1,5 +1,5 @@
 {% set name = "simple-pid" %}
-{% set version = "1.0.1" %}
+{% set version = "2.0.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 60d6b3a7c3f19734d33bbc5938293c4924d7cfea74176def03306057b3f99524
+  sha256: b7649cb8912435ef4f2f4f997b10f2b85757bc9ee79d94c4fab33f9d3b84dd5b
 
 build:
   number: 0
@@ -27,8 +27,8 @@ test:
   requires:
     - setuptools
   commands:
-     - python -c "import os, pkg_resources; assert os.path.isfile(pkg_resources.resource_filename('simple_pid', 'PID.pyi'))"
-     - python -c "import os, pkg_resources; assert os.path.isfile(pkg_resources.resource_filename('simple_pid', 'py.typed'))"
+    - python -c "import os, pkg_resources; assert os.path.isfile(pkg_resources.resource_filename('simple_pid', 'PID.pyi'))"
+    - python -c "import os, pkg_resources; assert os.path.isfile(pkg_resources.resource_filename('simple_pid', 'py.typed'))"
 
 about:
   home: https://github.com/m-lundberg/simple-pid
