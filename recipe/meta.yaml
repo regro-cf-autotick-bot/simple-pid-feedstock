@@ -6,26 +6,27 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 60d6b3a7c3f19734d33bbc5938293c4924d7cfea74176def03306057b3f99524
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps
 
 requirements:
   host:
-    - python >=3.6
+    - python {{ python_min }}
     - pip
   run:
-    - python >=3.6
+    - python >={{ python_min }}
 
 test:
   imports:
     - simple_pid
   requires:
     - setuptools
+    - python {{ python_min }}
   commands:
      - python -c "import os, pkg_resources; assert os.path.isfile(pkg_resources.resource_filename('simple_pid', 'PID.pyi'))"
      - python -c "import os, pkg_resources; assert os.path.isfile(pkg_resources.resource_filename('simple_pid', 'py.typed'))"
